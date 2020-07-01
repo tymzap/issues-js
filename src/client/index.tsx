@@ -6,9 +6,7 @@ import './styles.css';
 import AppContainer from './containers/AppContainer';
 
 const App = () => (
-  <AppContainer>
-    app works
-  </AppContainer>
+  <AppContainer />
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import IssuesBoardContainer from '../IssuesBoardContainer';
+
 export const AppContainer: FunctionComponent = ({ children }) => (
   <>
     <CssBaseline />
@@ -16,9 +18,7 @@ export const AppContainer: FunctionComponent = ({ children }) => (
       </Toolbar>
     </AppBar>
     <Container>
-      <>
-        {children}
-      </>
+      <IssuesBoardContainer />
     </Container>
   </>
 );

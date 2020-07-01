@@ -5,8 +5,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import DoneIcon from '@material-ui/icons/Done';
+import TrendingFlatIcon from '@material-ui/icons/TrendingFlat';
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+
+import { Issue } from '../../interfaces/issue';
 
 const useStyles = makeStyles({
   card: {
@@ -15,15 +19,13 @@ const useStyles = makeStyles({
 });
 
 export type IssueCardProps = {
-  name: string;
-  description: string;
-  status: 'OPEN' | 'PENDING' | 'CLOSED';
+  issue: Issue,
+  onActionButtonClick: (issue: Issue) => void;
 } & HTMLAttributes<HTMLDivElement>;
 
 export const IssueCard: FunctionComponent<IssueCardProps> = ({
-  name,
-  description,
-  status,
+  issue,
+  onActionButtonClick,
   className,
   ...restParam
 }) => {
@@ -33,17 +35,30 @@ export const IssueCard: FunctionComponent<IssueCardProps> = ({
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {name}
+            {issue.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {description}
+            {issue.description}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        {status !== 'CLOSED' ? (
-          <Button size="small" color="primary">
-            {status === 'OPEN' ? 'Begin' : 'Finish'}
+      <CardActions style={{
+        justifyContent: 'flex-end'
+      }}>
+        {issue.status !== 'CLOSED' ? (
+          <Button
+            onClick={() => {
+              onActionButtonClick(issue);
+            }}
+            endIcon={issue.status === 'OPEN' ? (
+              <TrendingFlatIcon>Begin</TrendingFlatIcon>
+            ) : (
+              <DoneIcon>Finish</DoneIcon>
+            )}
+            size={'small'}
+            color={'primary'}
+          >
+            {issue.status === 'OPEN' ? 'Begin' : 'Finish'}
           </Button>
         ) : null}
       </CardActions>
