@@ -1,4 +1,4 @@
-# Issues.js
+# issues.js
 Simple issue tracker written in Express and React
 
 ## Installation
