@@ -4,8 +4,11 @@ import {
   Column,
   Unique,
   AllowNull,
-  DataType
+  DataType,
+  HasMany
 } from 'sequelize-typescript';
+
+import Issue from './issue';
 
 @Table
 export default class User extends Model<User> {
@@ -17,4 +20,7 @@ export default class User extends Model<User> {
   @AllowNull(false)
   @Column(DataType.STRING(60))
   password!: string;
+
+  @HasMany(() => Issue)
+  issues?: Issue[];
 }
