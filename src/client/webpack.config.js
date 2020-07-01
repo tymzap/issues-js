@@ -3,6 +3,7 @@ const path = require('path');
 const BrowsersyncWebpackPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const DotEnvFlowPlugin = require('dotenv-flow-webpack');
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -22,7 +23,8 @@ module.exports = {
       port: 3010,
       proxy: 'localhost:3000',
       open: false
-    })
+    }),
+    new DotEnvFlowPlugin()
   ],
   module: {
     rules: [
